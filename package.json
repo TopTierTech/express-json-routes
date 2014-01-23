@@ -1,0 +1,21 @@
+{
+  "name": "express-json-routes",
+  "description": "Simple Routes for Express using JSON",
+  "version": "0.0.1",
+  "author": "Ryan Sullivan <kayoticsully@gmail.com>",
+  "main": "./lib/main",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies" : {
+    "underscore"   :  "*"
+  },
+  "keywords": [
+    "express",
+    "json",
+    "routes",
+    "route"
+  ],
+  "license": "MIT"
+}
