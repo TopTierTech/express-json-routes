@@ -6,7 +6,7 @@ Disclaimer: This is a very new module, and probably has bugs.  Consider it alpha
 
 How It Works
 -------------
-It's very simple and straight forward.  For each file.js in your routes folder add a file.json.  In this JSON file, define your routes as follows
+It's very simple and straight forward.  For each route.js in your routes folder add a route.json.  In this JSON file, define your routes as follows
 
 ```javascript
 {
@@ -24,4 +24,10 @@ It's very simple and straight forward.  For each file.js in your routes folder a
 }
 ```
 
+The route handler just has to be an exported function defined in the route.js file.
 
+Any middleware can be linked in by providing a "fileName" a ":" and then a "functionName" exported in that file.  Keep in mind that the file path is relative to the routes folder.
+
+ToDo:
+-----
+-   Allow multiple middle ware functions by parsing an array in the form of `"[ fileName:function, fileName:function, ... ]"`
