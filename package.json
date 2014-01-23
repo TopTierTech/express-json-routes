@@ -11,6 +11,10 @@
   "dependencies" : {
     "underscore"   :  "*"
   },
+  "devDependencies": {
+    "express" : "*",
+    "ejs": "*"     
+  },
   "keywords": [
     "express",
     "json",
