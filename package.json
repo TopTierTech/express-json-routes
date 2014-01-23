@@ -13,7 +13,11 @@
   },
   "devDependencies": {
     "express" : "*",
-    "ejs": "*"     
+    "ejs" : "*",
+    "mocha" : "*"    
+  },
+  "scripts": {
+    "test": "make test"
   },
   "keywords": [
     "express",
