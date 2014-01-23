@@ -14,7 +14,8 @@
   "devDependencies": {
     "express" : "*",
     "ejs" : "*",
-    "mocha" : "*"    
+    "mocha" : "*",
+    "zombie": "*"
   },
   "scripts": {
     "test": "make test"

@@ -1,3 +1,4 @@
 {
-    "/" : "index"
+    "/" : "index",
+    "/test2" : { "verb" : "get", "handler" : "test2" }
 }
