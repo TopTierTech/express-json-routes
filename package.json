@@ -1,7 +1,7 @@
 {
   "name": "express-json-routes",
   "description": "Simple Routes for Express using JSON",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Ryan Sullivan <kayoticsully@gmail.com>",
   "main": "./lib/main",
   "repository": {
@@ -15,7 +15,8 @@
     "express" : "*",
     "ejs" : "*",
     "mocha" : "*",
-    "zombie": "*"
+    "request": "*",
+    "should" : "*"
   },
   "scripts": {
     "test": "make test"

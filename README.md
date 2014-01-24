@@ -6,33 +6,38 @@ Disclaimer: This is a very new module, and probably has bugs.  Consider it alpha
 
 How It Works
 -------------
-It's very simple and straight forward.  For each route.js in your routes folder add a route.json.  In this JSON file, define your routes as follows
+As simple as 1, 2, 3!
+
+### 1
+For each route.js in your routes folder add a route.json.  In this JSON file, define your routes as follows
 
 ```javascript
 {
     // a simple path to handler mapping
-    "route/path" : "handler",
+    "VERB /route/path" : "handler",
+    "GET /simple/example" : "simpleHandler",
     
     // configurable mapping
-    "example/path" : {
-        "verb"       : "get",
+    "VERB /example/path" : {
         "handler"    : "functionName",
-        "middleware" : "fileName:functionName"
+        "middleware" : "fileName:functionName",
+        "regex"      : true | false
     }
-    
-    // By default the verb is "get" and the handler is "index".  There is no default middleware.
 }
 ```
-
--   The route handler just has to be an __exported__ function defined in the `route.js` file.
+-   The `VERB` can be any verb that express supports (`GET`, `POST`, `PUT`, `DELETE`)
+    -   The verb _MUST_ be uppsercase
+    -   The verb _MUST_ by followed by a space and a forward slash such as `"GET /"`.  This forward slash begins the url pattern or the regex pattern that follows.
+-   The route handler just has to be an __exported__ function defined in the relative `route.js` file.
 -   Any middleware can be linked in by providing a "fileName" a ":" and then a "functionName" exported in that file.  Keep in mind that the file path is relative to the routes folder.
 
+### 2, 3
 In your app.js file just include the module like...
 ```javascript
 
 // Includes
 var express     = require('express');
-var routes      = require('express-json-routes');
+var routes      = require('express-json-routes'); // 2
 
 var app = express();
 
@@ -42,11 +47,7 @@ app.use(...);
 ...
 
 // Thats It!
-routes(app);
+routes(app);  // 3
 ```
 
-Nothing else needed.  No need to `require` your route files at all.  Its that easy.
-
-ToDo:
------
--   Allow multiple middle ware functions by parsing an array in the form of `"[ fileName:function, fileName:function, ... ]"`
+Nothing else needed.  No need to `require` your route files at all.  Its that easy!

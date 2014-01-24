@@ -1,49 +1,50 @@
 
-var app = require(process.cwd() + '/test');
-var Browser = require('zombie');
-var assert = require('assert');
+var app     = require(process.cwd() + '/test');
+var request = require('request');
+var should = require('should');
+const URL   = "http://localhost:8000";
 
 describe('index routes', function() {
     
     before(function(){
         app.start();
-        this.browser = new Browser({ site: 'http://localhost:8000' });
-    });
-    
-    
-    describe('index', function() {
-        
-        before(function(done) {
-            this.browser.visit('/', done);
-        });
-        
-        it('should load', function() {
-            assert.ok(this.browser.success);
-            assert.equal(this.browser.text('h1'), 'Test 1');
-        });
-    });
-    
-    describe('other index', function() {
-        
-        before(function(done) {
-            this.browser.visit('/other', done);
-        });
-        
-        it('should load', function() {
-            assert.ok(this.browser.success);
-            assert.equal(this.browser.text('h1'), 'Other 1');
-        });
     });
     
     describe('index', function() {
-        
-        before(function(done) {
-            this.browser.visit('/test2', done);
+        it('should GET without error', function(done) {
+            request.get(URL, function(err, res, body){
+                should.not.exist(err);
+                res.statusCode.should.eql(200, 'wrong status code returned from server');
+                done();
+            });
+        });
+    });
+    
+    describe('test2', function() {
+        it('should POST test2', function(done) {
+            request.post(URL + "/test2", function(err, res, body){
+                should.not.exist(err);
+                res.statusCode.should.eql(200, 'wrong status code returned from server');
+                done();
+            });
+        });
+    });
+    
+    describe('test3', function() {
+        it('should GET dog', function(done) {
+            request.get(URL + "/dog", function(err, res, body){
+                should.not.exist(err);
+                res.statusCode.should.eql(200, 'wrong status code returned from server');
+                done();
+            });
         });
         
-        it('should load', function() {
-            assert.ok(this.browser.success);
-            assert.equal(this.browser.text('h1'), 'Test 2');
+        it('should GET ThisIsAdogWithAGun', function(done) {
+            request.get(URL + "/ThisIsAdog", function(err, res, body){
+                should.not.exist(err);
+                res.statusCode.should.eql(200, 'wrong status code returned from server');
+                done();
+            });
         });
     });
     

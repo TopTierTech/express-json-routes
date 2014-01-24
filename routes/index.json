@@ -1,4 +1,5 @@
 {
-    "/" : "index",
-    "/test2" : { "verb" : "get", "handler" : "test2" }
+    "GET /" : "index",
+    "POST /test2" : { "handler" : "test2" },
+    "GET /dog/g" : { "handler" : "test3", "regex" : true }
 }
