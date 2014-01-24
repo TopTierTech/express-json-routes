@@ -31,23 +31,26 @@ For each route.js in your routes folder add a route.json.  In this JSON file, de
 -   The route handler just has to be an __exported__ function defined in the relative `route.js` file.
 -   Any middleware can be linked in by providing a "fileName" a ":" and then a "functionName" exported in that file.  Keep in mind that the file path is relative to the routes folder.
 
-### 2, 3
-In your app.js file just include the module like...
+### 2
+In your app.js file just include the module like
 ```javascript
 
 // Includes
 var express     = require('express');
-var routes      = require('express-json-routes'); // 2
+var routes      = require('express-json-routes');
+
+...
 
 var app = express();
-
 // setup stuff
 app.set(...);
 app.use(...);
-...
+```
 
+### 3!
+...
 // Thats It!
-routes(app);  // 3
+routes(app);
 ```
 
 Nothing else needed.  No need to `require` your route files at all.  Its that easy!
