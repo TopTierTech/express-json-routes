@@ -7,7 +7,7 @@ How It Works
 As simple as 1, 2, 3!
 
 ### 1.
-For each `route.js` file in your routes folder add a `route.json` file.  In this JSON file, define your routes
+For each `route.js` file in your routes folder add a `route.json` file.  In this JSON file, define your routes.
 ```javascript
 {
     // a simple path to handler mapping
@@ -51,6 +51,6 @@ app.use(...);
 // Thats It!
 routes(app);
 ```
-No need to `require` your route at all.  Its that easy.
+No need to `require` your routes at all.  Its that easy.
 
 Enjoy!
