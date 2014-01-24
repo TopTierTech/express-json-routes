@@ -53,4 +53,82 @@ routes(app);
 ```
 No need to `require` your routes at all.  Its that easy.
 
+There are a few advanced topics below. Keep reading if you haven't seen exactly what you need yet!  And if there is a feature you need that you don't see, feel free to let me know or issue a pull request!
+
 Enjoy!
+
+
+More About Middleware
+---------------------
+If you want to include multiple middleware functions, we've got you covered! When you define your middleware instead of just defining `"fileName:functionName"` you can define an array.
+
+```javascript
+{
+    "VERB /example/path" : {
+        "handler"    : "functionName",
+        "middleware" : [
+            "fileName:functionName",
+            "fileName:functionName2",
+            "fileName2:functionName"
+        ]
+    }
+}
+```
+
+Other Options & Passing Variables
+-----------------
+So you want to pass variables into your routes file?  You'll love this!
+
+When you initialize the module (step 3 above), you can specify a few options.  All are listed below with the default values.  An explaination follows.
+
+```javascript
+
+var routeOptions = {
+    routes  : "./routes",
+    setup   : "init",
+    vars    : null
+}
+
+routes(app, routeOptions);
+
+```
+-   **routes**  : the path to your routes folder.
+-   **setup**   : the function you want called in your routes when they get loaded
+-   **vars**    : an object you want passed into your setup function
+
+For example, lets say you have a database connection you want to pass to all of your routes.
+```javascript
+var r       = require("rethinkdb");
+var express = require('express');
+var routes  = require("express-json-routes");
+
+var app = express();
+
+...
+
+var connection = null;
+r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
+    if (err) throw err;
+    connection = conn;
+});
+
+var routeOptions = {
+    vars : {
+        dbConnection : connection
+    }
+}
+
+routes(app, routeOptions);
+
+```
+
+Now in your routes file just export a function `init` and recieve the connection
+
+```javascript
+var connection
+exports.init = function(vars) {
+    connection = vars.dbConnection;
+}
+```
+
+And your all set!

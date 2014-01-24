@@ -30,7 +30,14 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-routes(app);
+
+var options = {
+  vars : {
+    title : "Var Test"
+  }
+}
+
+routes(app, options);
 
 
 var server = null;
